@@ -1,0 +1,18 @@
+{% extends 'home/layout.html' %}
+{% block content %}
+    <div class="container">
+        <h1> Your Details:</h1>
+        {% if fail %}
+        <div class="alert alert-danger" role="alert">Form data incorrectly entered! Please try again.</div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <p> Username: {{ request.user.username }}</p>
+            <p> First Name: {{ form.first_name }}</p>
+            <p> Last Name: {{ form.last_name }}</p>
+            <p> Email: {{ form.email }}</p>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        <a class="btn btn-info" href={% url 'passwordChange' %}>Change Password</a>
+    </div>
+{% endblock %}a

@@ -1,0 +1,10 @@
+{% extends 'home/layout.html' %}
+{% load wagtailcore_tags %}
+{% block content %}
+    <div class="container-fluid">
+        <h1>{{page.title}}</h1>
+        <h3>{{page.element.description}}</h3>
+        {{ page.body|richtext }}
+    <a class="btn btn-info" href="{% url 'kumu' %}?view={{page.element.tags.first.name}} ({{page.element.tags.first.type}})">Return to the map </a>
+    </div>
+{% endblock %}

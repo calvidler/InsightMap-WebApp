@@ -1,0 +1,107 @@
+{% extends 'home/layout.html' %}
+{% load wagtailcore_tags %}
+{% block content %}
+    <style>
+        body {
+            background-color: {{page.colour}};
+        }
+    </style>
+    <div class="container-fluid">
+        <form class="" action="/registerInterest/" method="post">
+            {% csrf_token %}
+            <input type="hidden" value={{ page.element.id }} name= "element">
+            <h1>{{ page.title }}</h1>
+            <h3>{{ page.element.description }}</h3>
+            {{ page.body|richtext }}
+            <div class="container">
+                <div class="col-xs-6">
+                    <h2 class="sub-header activitiesTable">Activities</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="col-md-1">Checked</th>
+                                <th class="col-md-2">Name</th>
+                                <th class="col-md-3">Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for activOut in page.element.activOuts.all %}
+                                <tr>
+                                    <td class="col-md-1"><input name={{ activOut.id }} class='checkbox'
+                                                                value='{{ activOut.id }}'
+                                                                id='{{ activOut.activity.id }}' type="checkbox"></td>
+                                    <td class='{{ activOut.activity.id }} activity name col-md-2'>{{ activOut.activity.name }}</td>
+                                    <td class="{{ activOut.activity.id }} activity desc col-md-3">{{ activOut.activity.description }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <h2 class="sub-header outcomesTable">Outcomes</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th class="col-md-2">Name</th>
+                                <th class="col-md-3">Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for activOut in page.element.activOuts.all %}
+                                <tr>
+                                    <td class="{{ activOut.outcome.id }} outcome name col-md-2">{{ activOut.outcome.name }}</td>
+                                    <td class="{{ activOut.outcome.id }} outcome desc col-md-3">{{ activOut.outcome.description }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-info"
+               href="{% url 'kumu' %}?view={{ page.element.tags.first.name }} ({{ page.element.tags.first.type }})">Return
+                to the map </a>
+            <input type="submit" name="" value="Add to My Insight" class="pull-right btn btn-link">
+        </form>
+    </div>
+    <script>
+        //hiding all coutcomes
+        $('.outcome').hide()
+
+        var seen = {};
+        $('tr').each(function () {
+            var txt = $(this).find("td:not(:first)").text();
+
+            if (seen[txt] && txt != "")
+                $(this).remove();
+            else
+                seen[txt] = true;
+        });
+        //showing checked box outcomes
+        var checked;
+        $('.checkbox').click(function () {
+            checked = new Array();
+            $('.checkbox').each(function () {
+                if (document.getElementById($(this).attr('id')).checked) {
+                    var value = $(this).attr('id')
+                    checked.push(value)
+
+                }
+
+            });
+            $('.outcome').hide()
+        });
+    </script>
+    {% for activOut in page.element.activOuts.all %}
+        <script>
+            $('.checkbox').click(function () {
+                if (checked.includes('{{activOut.activity.id}}')) {
+                    $('.outcome.{{activOut.outcome.id}}').show()
+                }
+            });
+        </script>
+    {% endfor %}
+{% endblock %}

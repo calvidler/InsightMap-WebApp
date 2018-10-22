@@ -1,0 +1,60 @@
+body, html {
+    /* The image used */
+    background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/98bb1a52285135.590b36fc561e2.jpg");
+
+    /*Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.padding {
+  margin-top: 15%;
+  color:white;
+
+}
+
+.header {
+  font-weight: thin;
+  line-height: 1;
+  font-family: 'Roboto', sans-serif;
+  padding-right:1px;
+  padding-left: 1px;
+  margin-left: 1px;
+}
+
+.p {
+  font-weight: thin;
+  line-height: 1.5;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  margin:0;
+  padding: 0;
+  border:0;
+}
+
+.bottomBar {
+    background-color: 	#222222;
+    height:30%;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.column {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  color:#808080;
+}
+.link{  /*both the networking map and reporting map links*/
+  color:#808080;
+}
+
+#transparent {
+  background-color:rgba(230, 230, 230,0.3);
+  padding:1px;
+}

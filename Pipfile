@@ -1,0 +1,21 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+
+[packages]
+
+django = "==2.0.8"
+gunicorn = "*"
+django-heroku = "*"
+django-cors-headers = "*"
+wagtail = "==2.2.2"
+django-admin-select2="*"
+django-select2="*"
+django-extensions="*"
+django-colorfield="*"
+python-slugify="*"
+[requires]
+
+python_version="3.6"

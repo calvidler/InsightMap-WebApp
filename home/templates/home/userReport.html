@@ -1,0 +1,19 @@
+{% extends 'home/layout.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <h1> Custom Report for {{ request.user.FirstName }}</h1>
+        <div class="containter">
+            <table class="table table-striped">
+                {% for star, Interests in stars %}
+                    <tr>
+                        <td><h3>Star : {{ star.label }}</h3>
+                            {% for interest in Interests %}
+                                <p>{{interest.activity.description}} leading to : {{ interest.outcome.description }}</p>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

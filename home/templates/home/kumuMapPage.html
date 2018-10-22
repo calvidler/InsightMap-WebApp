@@ -1,0 +1,14 @@
+{% extends 'home/layout.html' %}
+{% block content %}
+    <style media="screen">
+      body{
+        filter:invert(0%);
+      }
+    </style>
+    <h1>Insight Map</h1>
+    <div class="embed-responsive embed-responsive-16by9" width="100%" >
+        <iframe class="embed-responsive-item"
+                src={{link}}>
+        </iframe>
+    </div>
+{% endblock %}

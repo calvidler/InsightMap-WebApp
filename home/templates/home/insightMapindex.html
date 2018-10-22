@@ -1,0 +1,40 @@
+{% extends 'home/layout.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <h1> Insight maps indexing </h1>
+        <div class="containter">
+        <div class="row">
+            <div class="col border m-2">
+                <h1>Galaxies</h1>
+                {% for galaxy in galaxies %}
+                    {% if galaxy.1 == "#" %}
+                        <a class="btn btn-secondary" href="#">{{ galaxy.0 }}</a>
+                    {% else %}
+                        <a class="btn btn-primary" href="{% url 'kumu' %}?view={{ galaxy.1 }}">{{ galaxy.0 }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col border m-2">
+                <h1>Constellations</h1>
+                {% for constellation in constellations %}
+                    {% if constellation.1 == "#" %}
+                        <a class="btn btn-secondary" href="#">{{ constellation.0 }}</a>
+                    {% else %}
+                        <a class="btn btn-primary" href="{% url 'kumu' %}?view={{ constellation.1 }}">{{ constellation.0 }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col border m-2">
+                <h1>Stars</h1>
+                {% for star in stars %}
+                    {% if star.1 == "#" %}
+                        <a class="btn btn-secondary" href="#">{{ star.0 }}</a>
+                    {% else %}
+                        <a class="btn btn-primary" href="{% url 'kumu' %}?view={{ star.1 }}">{{ star.0 }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

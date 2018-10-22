@@ -1,0 +1,36 @@
+{% extends 'home/layout.html' %}
+{% block content %}
+  {% load staticfiles %}
+  <div class="text-center padding">
+    <div class="jumbotron" id = "transparent">
+      <h1 class = "header">Insight Maps</h1>
+      <p class = "p">A systems approach to more effective giving</p>
+    </div>
+  </div>
+
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+
+    <div class="bottomBar">
+      <h4 class="text-center p" style= "color:#808080;margin:25px;">Features</h4>
+      <div class="container">
+        <div class="row">
+
+  			<div class = "column">
+          <div class = "thumbnail" style ="background-color:transparent;border:none;">
+            <a href={% url 'kumu' %}>
+    					<img src="{% static "images/NetworkMap.png" %}">
+              <p class ="link p" style="margin-top:5px;" >NetworkMap</p>
+          </a>
+          </div>
+  			</div>
+        <div class = "column">
+  					<a href={% url 'userReport' %}>
+              <img src="{% static "images/Reporting.png" %}" style="width:125%;" >
+              <p class = "link p"style="margin-top:5px;">Reporting</p>
+            </a>
+  			</div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
